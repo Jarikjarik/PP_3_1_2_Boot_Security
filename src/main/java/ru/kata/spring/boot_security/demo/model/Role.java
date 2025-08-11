@@ -11,7 +11,7 @@ import java.util.Objects;
 public class Role implements GrantedAuthority {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(unique = true,  nullable = false)
@@ -21,6 +21,7 @@ public class Role implements GrantedAuthority {
 
     public Role(Long id, String name) {
         this.name = name;
+        this.id = id;
     }
 
     @Override

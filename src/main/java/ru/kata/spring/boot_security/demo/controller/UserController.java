@@ -21,6 +21,16 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    public String index() {
+        return "index";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
     @GetMapping("/user")
     public String userPage(Model model, @AuthenticationPrincipal UserDetails userDetails) {
         User user = userService.findByUsername(userDetails.getUsername());
@@ -37,6 +47,7 @@ public class UserController {
     @GetMapping("/admin/new")
     public String showCreateForm(Model model) {
         model.addAttribute("user", new User());
+        model.addAttribute("allRoles", userService.getAllRoles());
         return "create_user";
     }
 
@@ -49,6 +60,7 @@ public class UserController {
     @GetMapping("/admin/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
+        model.addAttribute("allRoles", userService.getAllRoles());
         return "edit_user";
     }
 
@@ -69,6 +81,4 @@ public class UserController {
         userService.deleteUserById(id);
         return "redirect:/admin";
     }
-
-
 }
