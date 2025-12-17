@@ -23,12 +23,14 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public List<User> getAllUser() {
         return userRepository.findAll();
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public void saveUser(User user) {
         if (user.getId() == null ||
                 !passwordEncoder.matches(
@@ -41,17 +43,20 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public User getUserById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
-    @Override @Transactional
+    @Override
+    @Transactional
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
     }
 
-    @Override @Transactional(readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public User findByUsername(String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));

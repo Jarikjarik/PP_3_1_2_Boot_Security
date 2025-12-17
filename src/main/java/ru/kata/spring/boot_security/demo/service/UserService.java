@@ -6,8 +6,12 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUser();
+
     void saveUser(User user);
+
     User getUserById(Long id);
+
     void deleteUserById(Long id);
+
     User findByUsername(String username);
 }

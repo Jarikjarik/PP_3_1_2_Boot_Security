@@ -85,7 +85,7 @@ public class User implements UserDetails {
     }
 
     @Override
-    public Collection<Role>  getAuthorities() {
+    public Collection<Role> getAuthorities() {
         return roles;
     }
 
